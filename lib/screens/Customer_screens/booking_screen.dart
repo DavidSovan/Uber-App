@@ -37,7 +37,7 @@ class _BookingScreenState extends State<BookingScreen> {
     'UberSUV': 'Luxury SUVs with extra space',
     'UberWav': 'Wheelchair accessible vehicles',
   };
-  //create booking method
+
   Future<void> _createBooking() async {
     setState(() {
       _isLoading = true;

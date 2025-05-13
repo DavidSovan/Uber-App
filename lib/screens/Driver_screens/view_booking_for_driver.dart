@@ -50,6 +50,25 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
       appBar: AppBar(
         title: const Text('Available Bookings'),
         centerTitle: true,
+        actions: [
+          _isLoading
+              ? const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                ),
+              )
+              : IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: _loadBookings,
+                tooltip: 'Refresh bookings',
+              ),
+        ],
       ),
       body:
           _isLoading
@@ -151,6 +170,15 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
                                                     'Booking accepted successfully',
                                                   ),
                                                   backgroundColor: Colors.green,
+                                                  behavior:
+                                                      SnackBarBehavior.floating,
+                                                  margin: EdgeInsets.all(16),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                          Radius.circular(10),
+                                                        ),
+                                                  ),
                                                 ),
                                               );
                                               _loadBookings();
@@ -163,6 +191,15 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
                                                     'Failed to accept booking: $e',
                                                   ),
                                                   backgroundColor: Colors.red,
+                                                  behavior:
+                                                      SnackBarBehavior.floating,
+                                                  margin: EdgeInsets.all(16),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                          Radius.circular(10),
+                                                        ),
+                                                  ),
                                                 ),
                                               );
                                             }

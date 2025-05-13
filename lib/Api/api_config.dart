@@ -40,4 +40,7 @@ class ApiConfig {
   static const String viewAllBookings = '$baseUrl/driver/bookings';
   static const String acceptBooking = '$baseUrl/driver/accept';
   static const String completeTrip = '$baseUrl/driver/complete';
+
+  // Rating endpoints
+  static const String submitRating = '$baseUrl/ratings';
 }

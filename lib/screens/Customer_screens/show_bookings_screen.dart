@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber_taxi/auth/services/booking_service.dart';
 import 'package:uber_taxi/models/booking_model.dart';
+import 'package:uber_taxi/screens/Customer_screens/feedback_screen.dart';
 
 class ShowBookingsScreen extends StatefulWidget {
   const ShowBookingsScreen({super.key});
@@ -127,6 +128,11 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
       itemCount: _bookings.length,
       itemBuilder: (context, index) {
         final booking = _bookings[index];
+        if (booking.status?.toLowerCase() == 'completed') {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _showCompletionDialog(booking);
+          });
+        }
         return Card(
           elevation: 4,
           margin: const EdgeInsets.only(bottom: 16),
@@ -232,5 +238,39 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
         );
       }
     }
+  }
+
+  void _showCompletionDialog(Booking booking) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Trip Completed!'),
+            content: const Text(
+              'Would you like to provide feedback for your trip?',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close dialog
+                },
+                child: const Text('Later'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close dialog
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FeedbackScreen(booking: booking),
+                    ),
+                  );
+                },
+                child: const Text('Give Feedback'),
+              ),
+            ],
+          ),
+    );
   }
 }

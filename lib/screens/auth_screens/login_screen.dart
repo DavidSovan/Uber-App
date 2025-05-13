@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uber_taxi/auth/services/auth_api_service.dart' show ApiService;
-import 'package:uber_taxi/screens/Customer_screens/customer_screen.dart'
+import 'package:uber_taxi/screens/Customer_screens/customer_dashboard_screen.dart'
     show CustomerHomeScreen;
-import 'package:uber_taxi/screens/Driver_screens/driver_screen.dart'
+import 'package:uber_taxi/screens/Driver_screens/driver_dashboard_screen.dart'
     show DriverHomeScreen;
 import 'package:uber_taxi/screens/auth_screens/signup_screen.dart'
     show RegisterScreen;

@@ -26,6 +26,11 @@ class _OnTripScreenState extends State<OnTripScreen> {
         const SnackBar(
           content: Text('Trip completed successfully'),
           backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
         ),
       );
       Navigator.of(context).popUntil((route) => route.isFirst);
@@ -35,6 +40,11 @@ class _OnTripScreenState extends State<OnTripScreen> {
         SnackBar(
           content: Text('Failed to complete trip: $e'),
           backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
         ),
       );
     } finally {
