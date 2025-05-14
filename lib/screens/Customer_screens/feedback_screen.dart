@@ -10,11 +10,22 @@ class FeedbackScreen extends StatefulWidget {
   State<FeedbackScreen> createState() => _FeedbackScreenState();
 }
 
-class _FeedbackScreenState extends State<FeedbackScreen> {
+class _FeedbackScreenState extends State<FeedbackScreen>
+    with SingleTickerProviderStateMixin {
   final _ratingService = RatingService();
   final _feedbackController = TextEditingController();
   int _rating = 0;
   bool _isSubmitting = false;
+  late AnimationController _starController;
+
+  @override
+  void initState() {
+    super.initState();
+    _starController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+  }
 
   Future<void> _submitRating() async {
     if (_rating == 0) {
@@ -77,53 +88,160 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Rate your trip'), centerTitle: true),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Booking ID: ${widget.booking.id}'),
-            const SizedBox(height: 20),
-            const Text(
-              'Rate your experience:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('Rate your trip'),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).primaryColor.withOpacity(0.8),
+              ],
             ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) {
-                return IconButton(
-                  icon: Icon(
-                    index < _rating ? Icons.star : Icons.star_border,
-                    size: 40,
-                    color: Colors.amber,
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor.withOpacity(0.1),
+              Colors.white,
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.rate_review,
+                        size: 48,
+                        color: Colors.amber,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'How was your trip?',
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Booking #${widget.booking.id}',
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (index) {
+                          return TweenAnimationBuilder<double>(
+                            duration: const Duration(milliseconds: 300),
+                            tween: Tween(
+                              begin: 0.0,
+                              end: index < _rating ? 1.0 : 0.0,
+                            ),
+                            builder: (context, value, child) {
+                              return IconButton(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                constraints: const BoxConstraints(),
+                                icon: Icon(
+                                  index < _rating
+                                      ? Icons.star
+                                      : Icons.star_border,
+                                  size: 40, // Reduced from 48
+                                  color: Color.lerp(
+                                    Colors.grey[400],
+                                    Colors.amber,
+                                    value,
+                                  ),
+                                ),
+                                onPressed:
+                                    () => setState(() => _rating = index + 1),
+                              );
+                            },
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 24),
+                      TextField(
+                        controller: _feedbackController,
+                        maxLines: 4,
+                        decoration: InputDecoration(
+                          labelText: 'Share your experience',
+                          hintText:
+                              'Tell us what you liked or what we can improve...',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.grey.shade300),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey.shade50,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: ElevatedButton(
+                          onPressed: _isSubmitting ? null : _submitRating,
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child:
+                              _isSubmitting
+                                  ? const SizedBox(
+                                    height: 24,
+                                    width: 24,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white,
+                                      ),
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                  : const Text(
+                                    'SUBMIT FEEDBACK',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () => setState(() => _rating = index + 1),
-                );
-              }),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _feedbackController,
-              maxLines: 3,
-              decoration: const InputDecoration(
-                labelText: 'Additional feedback',
-                border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _isSubmitting ? null : _submitRating,
-                child:
-                    _isSubmitting
-                        ? const CircularProgressIndicator()
-                        : const Text('Submit Rating'),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -131,6 +249,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   @override
   void dispose() {
+    _starController.dispose();
     _feedbackController.dispose();
     super.dispose();
   }
