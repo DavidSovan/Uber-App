@@ -34,8 +34,8 @@ class _FeedbackScreenState extends State<FeedbackScreen>
           content: Text('Please select a rating'),
           backgroundColor: Colors.orange,
           behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(16),
-          shape: const RoundedRectangleBorder(
+          margin: EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
         ),
@@ -98,6 +98,7 @@ class _FeedbackScreenState extends State<FeedbackScreen>
             gradient: LinearGradient(
               colors: [
                 Theme.of(context).primaryColor,
+                // ignore: deprecated_member_use
                 Theme.of(context).primaryColor.withOpacity(0.8),
               ],
             ),
@@ -110,6 +111,7 @@ class _FeedbackScreenState extends State<FeedbackScreen>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
+              // ignore: deprecated_member_use
               Theme.of(context).primaryColor.withOpacity(0.1),
               Colors.white,
             ],

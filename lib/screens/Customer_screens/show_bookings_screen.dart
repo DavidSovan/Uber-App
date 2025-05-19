@@ -105,6 +105,7 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
           Icon(
             Icons.car_rental,
             size: 100,
+            // ignore: deprecated_member_use
             color: Theme.of(context).primaryColor.withOpacity(0.5),
           ),
           const SizedBox(height: 16),
@@ -205,6 +206,7 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: chipColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: chipColor),

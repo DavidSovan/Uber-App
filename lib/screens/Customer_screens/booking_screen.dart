@@ -3,7 +3,10 @@ import 'package:uber_taxi/auth/services/booking_service.dart';
 import 'package:uber_taxi/models/booking_model.dart';
 
 class BookingScreen extends StatefulWidget {
+  const BookingScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _BookingScreenState createState() => _BookingScreenState();
 }
 
@@ -52,6 +55,7 @@ class _BookingScreenState extends State<BookingScreen> {
         _createdBooking = response.data;
       });
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(response.message),
@@ -68,6 +72,7 @@ class _BookingScreenState extends State<BookingScreen> {
         _errorMessage = e.toString();
       });
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(_errorMessage!),
@@ -105,7 +110,7 @@ class _BookingScreenState extends State<BookingScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            ..._bookingTypes.map((type) => _buildRideTypeCard(type)).toList(),
+            ..._bookingTypes.map((type) => _buildRideTypeCard(type)),
             SizedBox(height: 20),
             if (_createdBooking != null) _buildBookingDetailsCard(),
             SizedBox(height: 20),

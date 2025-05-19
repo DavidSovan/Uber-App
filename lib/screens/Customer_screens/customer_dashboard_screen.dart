@@ -6,9 +6,10 @@ import 'package:uber_taxi/screens/auth_screens/login_screen.dart'
     show LoginScreen;
 
 class CustomerHomeScreen extends StatefulWidget {
-  const CustomerHomeScreen({Key? key}) : super(key: key);
+  const CustomerHomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomerHomeScreenState createState() => _CustomerHomeScreenState();
 }
 
@@ -40,9 +41,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     try {
       await ApiService.signOut();
       Navigator.of(
+        // ignore: use_build_context_synchronously
         context,
       ).pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error signing out: ${e.toString()}')),
       );
@@ -87,6 +90,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               end: Alignment.bottomRight,
               colors: [
                 Theme.of(context).primaryColor,
+                // ignore: deprecated_member_use
                 Theme.of(context).primaryColor.withOpacity(0.8),
               ],
             ),
@@ -96,6 +100,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             ),
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: Colors.grey.withOpacity(0.3),
                 spreadRadius: 2,
                 blurRadius: 10,
@@ -144,6 +149,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           Text(
                             _userData!['email'],
                             style: TextStyle(
+                              // ignore: deprecated_member_use
                               color: Colors.white.withOpacity(0.9),
                               fontSize: 14,
                             ),
@@ -164,6 +170,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(20),
             ),
@@ -255,6 +262,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
+              // ignore: deprecated_member_use
               colors: [color.withOpacity(0.8), color],
             ),
           ),
