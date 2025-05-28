@@ -43,4 +43,10 @@ class ApiConfig {
 
   // Rating endpoints
   static const String submitRating = '$baseUrl/ratings';
+  static String viewRating(String driverId) => '$baseUrl/ratings/$driverId';
+
+  // Driver endpoints
+  static const String getdrivers = '$baseUrl/drivers';
+  static String getDriverRatings(String driverId) =>
+      '$baseUrl/ratings/$driverId';
 }

@@ -73,6 +73,7 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
         color: _colorController.text,
         year: int.parse(_yearController.text),
         type: _selectedType,
+        licensePlate: _vehicleNumberController.text,
         createdAt: widget.vehicle.createdAt,
         updatedAt: DateTime.now(),
       );

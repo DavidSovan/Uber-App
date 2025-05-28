@@ -91,6 +91,7 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
         color: _selectedColor,
         year: int.parse(_selectedYear),
         type: _selectedType,
+        licensePlate: _vehicleNumberController.text,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );

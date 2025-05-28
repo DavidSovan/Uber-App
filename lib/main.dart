@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uber_taxi/auth/providers/list_driver_provider.dart';
 import 'package:uber_taxi/auth/services/auth_api_service.dart' show ApiService;
 import 'package:uber_taxi/screens/Customer_screens/customer_dashboard_screen.dart'
     show CustomerHomeScreen;
@@ -8,11 +10,16 @@ import 'package:uber_taxi/screens/auth_screens/login_screen.dart'
     show LoginScreen;
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => DriverProvider())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
