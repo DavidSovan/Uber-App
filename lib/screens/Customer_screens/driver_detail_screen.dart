@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uber_taxi/auth/providers/list_driver_provider.dart';
-import 'dart:ui';
 
 class DriverDetailScreen extends StatefulWidget {
   final int driverId;
@@ -109,7 +108,7 @@ class _DriverDetailScreenState extends State<DriverDetailScreen> {
         title: const Text(
           'Driver Profile',
           style: TextStyle(
-            color: Colors.black87,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

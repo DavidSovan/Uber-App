@@ -6,7 +6,7 @@ import 'package:uber_taxi/screens/auth_screens/login_screen.dart'
     show LoginScreen;
 
 class DriverHomeScreen extends StatefulWidget {
-  const DriverHomeScreen({Key? key}) : super(key: key);
+  const DriverHomeScreen({super.key});
 
   @override
   State<DriverHomeScreen> createState() => _DriverHomeScreenState();
@@ -40,10 +40,12 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
   Future<void> _signOut() async {
     try {
       await ApiService.signOut();
+      if (!mounted) return;
       Navigator.of(
         context,
       ).pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
     } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error signing out: ${e.toString()}')),
       );
@@ -64,10 +66,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).primaryColor.withOpacity(0.8),
-              Colors.white,
-            ],
+            colors: [Theme.of(context).primaryColor, Color(0xFF26A69A)],
           ),
         ),
         child:
@@ -115,7 +114,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                                   borderRadius: BorderRadius.circular(15),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.withOpacity(0.1),
+                                      color: Colors.grey.withValues(alpha: 0.1),
                                       spreadRadius: 5,
                                       blurRadius: 7,
                                       offset: const Offset(0, 3),

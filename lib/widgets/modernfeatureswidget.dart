@@ -4,7 +4,7 @@ import 'package:uber_taxi/screens/Customer_screens/driver_list_screen.dart';
 import 'package:uber_taxi/screens/Customer_screens/show_bookings_screen.dart';
 
 class ModernFeaturesWidget extends StatelessWidget {
-  const ModernFeaturesWidget({Key? key}) : super(key: key);
+  const ModernFeaturesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +12,17 @@ class ModernFeaturesWidget extends StatelessWidget {
   }
 
   Widget _buildFeaturesList(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeader(),
-          const SizedBox(height: 24),
-          _buildFeaturesGrid(context),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHeader(),
+            const SizedBox(height: 24),
+            _buildFeaturesGrid(context),
+          ],
+        ),
       ),
     );
   }
@@ -58,7 +60,7 @@ class ModernFeaturesWidget extends StatelessWidget {
       crossAxisCount: 2,
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
-      childAspectRatio: 1.1,
+      childAspectRatio: 0.9,
       children: [
         _buildModernFeatureCard(
           icon: Icons.local_taxi_rounded,
@@ -66,7 +68,7 @@ class ModernFeaturesWidget extends StatelessWidget {
           subtitle: 'Quick & Easy',
           primaryColor: const Color(0xFF4A90E2),
           secondaryColor: const Color(0xFF357ABD),
-          glowColor: const Color(0xFF4A90E2).withOpacity(0.3),
+          glowColor: const Color(0xFF4A90E2).withValues(alpha: 0.3),
           onTap: () {
             Navigator.push(
               context,
@@ -80,7 +82,7 @@ class ModernFeaturesWidget extends StatelessWidget {
           subtitle: 'View History',
           primaryColor: const Color(0xFF50C878),
           secondaryColor: const Color(0xFF3DA55C),
-          glowColor: const Color(0xFF50C878).withOpacity(0.3),
+          glowColor: const Color(0xFF50C878).withValues(alpha: 0.3),
           onTap: () {
             Navigator.push(
               context,
@@ -96,7 +98,7 @@ class ModernFeaturesWidget extends StatelessWidget {
           subtitle: 'View Details',
           primaryColor: const Color(0xFF9370DB),
           secondaryColor: const Color(0xFF7B68EE),
-          glowColor: const Color(0xFF9370DB).withOpacity(0.3),
+          glowColor: const Color(0xFF9370DB).withValues(alpha: 0.3),
           onTap: () {
             Navigator.push(
               context,
@@ -117,24 +119,28 @@ class ModernFeaturesWidget extends StatelessWidget {
     required Color glowColor,
     required VoidCallback onTap,
   }) {
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0.0, end: 1.0),
-      duration: const Duration(milliseconds: 600),
-      builder: (context, value, child) {
-        return Transform.scale(
-          scale: 0.8 + (0.2 * value),
-          child: Opacity(
-            opacity: value,
-            child: _buildCardContent(
-              icon: icon,
-              title: title,
-              subtitle: subtitle,
-              primaryColor: primaryColor,
-              secondaryColor: secondaryColor,
-              glowColor: glowColor,
-              onTap: onTap,
-            ),
-          ),
+    return Builder(
+      builder: (context) {
+        return TweenAnimationBuilder<double>(
+          tween: Tween(begin: 0.0, end: 1.0),
+          duration: const Duration(milliseconds: 600),
+          builder: (context, value, child) {
+            return Transform.scale(
+              scale: 0.8 + (0.2 * value),
+              child: Opacity(
+                opacity: value,
+                child: _buildCardContent(
+                  icon: icon,
+                  title: title,
+                  subtitle: subtitle,
+                  primaryColor: primaryColor,
+                  secondaryColor: secondaryColor,
+                  glowColor: glowColor,
+                  onTap: onTap,
+                ),
+              ),
+            );
+          },
         );
       },
     );
@@ -160,7 +166,7 @@ class ModernFeaturesWidget extends StatelessWidget {
             spreadRadius: 0,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
             spreadRadius: 0,
@@ -345,7 +351,7 @@ class CompactFeaturesWidget extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return Container(
-      height: 120,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.white,

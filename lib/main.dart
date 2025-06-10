@@ -33,16 +33,16 @@ class MyApp extends StatelessWidget {
           primarySwatch: MaterialColor(
             0xFF80CBC4, // Base color for swatch
             {
-              50: Color(0xFF80CBC4).withOpacity(0.1),
-              100: Color(0xFF80CBC4).withOpacity(0.2),
-              200: Color(0xFF80CBC4).withOpacity(0.3),
-              300: Color(0xFF80CBC4).withOpacity(0.4),
-              400: Color(0xFF80CBC4).withOpacity(0.5),
-              500: Color(0xFF80CBC4).withOpacity(0.6),
-              600: Color(0xFF80CBC4).withOpacity(0.7),
-              700: Color(0xFF80CBC4).withOpacity(0.8),
-              800: Color(0xFF80CBC4).withOpacity(0.9),
-              900: Color(0xFF80CBC4).withOpacity(1.0),
+              50: Color(0xFF80CBC4).withValues(alpha: 0.1),
+              100: Color(0xFF80CBC4).withValues(alpha: 0.2),
+              200: Color(0xFF80CBC4).withValues(alpha: 0.3),
+              300: Color(0xFF80CBC4).withValues(alpha: 0.4),
+              400: Color(0xFF80CBC4).withValues(alpha: 0.5),
+              500: Color(0xFF80CBC4).withValues(alpha: 0.6),
+              600: Color(0xFF80CBC4).withValues(alpha: 0.7),
+              700: Color(0xFF80CBC4).withValues(alpha: 0.8),
+              800: Color(0xFF80CBC4).withValues(alpha: 0.9),
+              900: Color(0xFF80CBC4).withValues(alpha: 1.0),
             },
           ),
         ).copyWith(secondary: Color(0xFF26A69A)),
@@ -54,13 +54,13 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -97,13 +97,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF80CBC4),
+      backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF80CBC4), Color(0xFF26A69A)],
+            colors: [Theme.of(context).primaryColor, Color(0xFF26A69A)],
           ),
         ),
         child: SafeArea(
@@ -115,7 +115,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.2), // Light overlay color
+                    color: Colors.white.withValues(
+                      alpha: 0.2,
+                    ), // Light overlay color
                   ),
                   child: const Icon(
                     Icons.local_taxi_outlined,

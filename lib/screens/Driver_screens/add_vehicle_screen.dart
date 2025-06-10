@@ -3,11 +3,13 @@ import 'package:uber_taxi/auth/services/vehicle_service.dart';
 import 'package:uber_taxi/models/vehicle_model.dart';
 
 class AddVehicleScreen extends StatefulWidget {
+  const AddVehicleScreen({super.key});
+
   @override
-  _AddVehicleScreenState createState() => _AddVehicleScreenState();
+  AddVehicleScreenState createState() => AddVehicleScreenState();
 }
 
-class _AddVehicleScreenState extends State<AddVehicleScreen> {
+class AddVehicleScreenState extends State<AddVehicleScreen> {
   final _formKey = GlobalKey<FormState>();
   final _vehicleService = VehicleService();
 

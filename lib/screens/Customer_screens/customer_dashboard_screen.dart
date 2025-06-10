@@ -57,7 +57,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
-        title: const Text('Dashboard', style: TextStyle(color: Colors.white)),
+        title: const Text('Welcome', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
             icon: const Icon(Icons.exit_to_app, color: Colors.white),

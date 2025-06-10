@@ -9,35 +9,22 @@ class ApiService {
       final response = await http.get(Uri.parse(ApiConfig.getdrivers));
 
       if (response.statusCode == 200) {
-        print('API Response for drivers: ${response.body}');
-
-        // Parse the JSON response
         final jsonData = json.decode(response.body);
-        print('Decoded JSON type: ${jsonData.runtimeType}');
 
-        // Check if the response is a List
         if (jsonData is List) {
-          // Create a list to hold valid driver objects
           List<Driver> drivers = [];
-
-          // Process each driver object individually to handle errors
           for (int i = 0; i < jsonData.length; i++) {
             try {
-              print('Processing Driver $i: ${jsonData[i]}');
               final driver = Driver.fromJson(
                 jsonData[i] as Map<String, dynamic>,
               );
               drivers.add(driver);
             } catch (e) {
-              // Log the error but continue processing other drivers
-              print('Error processing driver $i: $e');
+              continue;
             }
           }
-
           return drivers;
         } else {
-          // Handle case where response is not a list
-          print('API response is not a list: $jsonData');
           throw Exception(
             'Failed to load drivers: API response format is not as expected',
           );
@@ -46,7 +33,6 @@ class ApiService {
         throw Exception('Failed to load drivers: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error in fetchDrivers: $e');
       throw Exception('Failed to load drivers: $e');
     }
   }
@@ -57,7 +43,6 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      print('API Response for driver ratings: ${response.body}'); // Add logging
       final jsonData = json.decode(response.body);
       return DriverRating.fromJson(jsonData);
     } else {

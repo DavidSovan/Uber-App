@@ -49,7 +49,14 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         elevation: 0,
-        title: const Text('My Bookings', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Bookings',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.white),
@@ -81,7 +88,7 @@ class _ShowBookingsScreenState extends State<ShowBookingsScreen> {
           Text(
             _errorMessage!,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           ElevatedButton.icon(

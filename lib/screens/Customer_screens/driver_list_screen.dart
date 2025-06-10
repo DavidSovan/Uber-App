@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:uber_taxi/auth/providers/list_driver_provider.dart';
 import 'package:uber_taxi/models/driver.dart';
 import 'package:uber_taxi/screens/Customer_screens/driver_detail_screen.dart';
-import 'dart:ui';
 
 class DriverListScreen extends StatefulWidget {
   const DriverListScreen({super.key});
@@ -16,7 +15,7 @@ class _DriverListScreenState extends State<DriverListScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isSearching = false;
   String _searchQuery = '';
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -62,9 +61,9 @@ class _DriverListScreenState extends State<DriverListScreen> {
                   decoration: InputDecoration(
                     hintText: 'Search drivers...',
                     border: InputBorder.none,
-                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    hintStyle: TextStyle(color: Colors.black),
                   ),
-                  style: const TextStyle(color: Colors.black87, fontSize: 16),
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
                   onChanged: (value) {
                     setState(() {
                       _searchQuery = value;
@@ -72,9 +71,9 @@ class _DriverListScreenState extends State<DriverListScreen> {
                   },
                 )
                 : const Text(
-                  'Our Drivers',
+                  'Drivers',
                   style: TextStyle(
-                    color: Colors.black87,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
@@ -302,7 +301,7 @@ class DriverCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
+            color: Colors.grey.withValues(alpha: 0.2),
             spreadRadius: 1,
             blurRadius: 6,
             offset: const Offset(0, 3),
@@ -333,7 +332,7 @@ class DriverCard extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 32,
-                        backgroundColor: avatarColor.withOpacity(0.2),
+                        backgroundColor: avatarColor.withValues(alpha: 0.2),
                         child: Text(
                           driver.name.isNotEmpty
                               ? driver.name.substring(0, 1).toUpperCase()
@@ -356,7 +355,7 @@ class DriverCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
+                                color: Colors.grey.withValues(alpha: 0.3),
                                 spreadRadius: 1,
                                 blurRadius: 2,
                                 offset: const Offset(0, 1),

@@ -6,11 +6,10 @@ class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _BookingScreenState createState() => _BookingScreenState();
+  BookingScreenState createState() => BookingScreenState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class BookingScreenState extends State<BookingScreen> {
   final BookingService _apiService = BookingService();
   bool _isLoading = false;
   String? _errorMessage;
@@ -54,36 +53,36 @@ class _BookingScreenState extends State<BookingScreen> {
       setState(() {
         _createdBooking = response.data;
       });
-
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(response.message),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.message),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.all(16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
-        ),
-      );
+        );
+      }
     } catch (e) {
       setState(() {
         _errorMessage = e.toString();
       });
-
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(_errorMessage!),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(_errorMessage!),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.all(16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
-        ),
-      );
+        );
+      }
     } finally {
       setState(() {
         _isLoading = false;
@@ -94,17 +93,12 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Book a Ride'),
-        elevation: 0,
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 25),
             Text(
               'Select Your Ride',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -121,9 +115,15 @@ class _BookingScreenState extends State<BookingScreen> {
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 1.5,
+                    ),
                   ),
                   elevation: 2,
                   padding: EdgeInsets.symmetric(horizontal: 24),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Colors.white,
                 ),
                 icon:
                     _isLoading
