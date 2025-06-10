@@ -52,7 +52,7 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 10,
             offset: const Offset(0, 2),
@@ -64,7 +64,7 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(16),
               ),
@@ -214,14 +214,17 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Available Bookings'),
+        title: const Text(
+          'Available Bookings',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Theme.of(context).primaryColor,
-                Theme.of(context).primaryColor.withOpacity(0.8),
+                Theme.of(context).primaryColor.withValues(alpha: 0.8),
               ],
             ),
           ),

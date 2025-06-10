@@ -82,7 +82,7 @@ class _OnTripScreenState extends State<OnTripScreen>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Theme.of(context).primaryColor, Colors.white],
+            colors: [Theme.of(context).primaryColor, Color(0xFF26A69A)],
           ),
         ),
         child: SafeArea(
@@ -144,7 +144,7 @@ class _OnTripScreenState extends State<OnTripScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 10,
             offset: const Offset(0, 2),
@@ -160,7 +160,7 @@ class _OnTripScreenState extends State<OnTripScreen>
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -194,7 +194,7 @@ class _OnTripScreenState extends State<OnTripScreen>
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.1),
+                  color: Colors.green.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -209,12 +209,7 @@ class _OnTripScreenState extends State<OnTripScreen>
             ],
           ),
           const Divider(height: 32),
-          _buildInfoRow(
-            Icons.attach_money,
-            'Price',
-            '${widget.booking.price} ${widget.booking.currency}',
-          ),
-          const SizedBox(height: 12),
+
           _buildInfoRow(
             Icons.access_time,
             'Status',
@@ -251,7 +246,7 @@ class _OnTripScreenState extends State<OnTripScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 10,
             offset: const Offset(0, 2),
@@ -315,7 +310,7 @@ class _OnTripScreenState extends State<OnTripScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 10,
             offset: const Offset(0, 2),
@@ -326,6 +321,7 @@ class _OnTripScreenState extends State<OnTripScreen>
         onPressed: _isLoading ? null : _completeTrip,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
