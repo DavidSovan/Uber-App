@@ -101,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen>
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: Color(0xFF26A69A),
       body: SafeArea(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -542,7 +542,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                               ),
                               child: const Text(
                                 'Sign In',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],

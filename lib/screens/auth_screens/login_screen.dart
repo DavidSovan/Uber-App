@@ -92,7 +92,7 @@ class LoginScreenState extends State<LoginScreen>
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: Color(0xFF26A69A),
       body: SafeArea(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -113,27 +113,35 @@ class LoginScreenState extends State<LoginScreen>
                     Center(
                       child: Column(
                         children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withOpacity(0.8),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.local_taxi_rounded,
-                              size: 60,
-                              color:
-                                  Colors
-                                      .white, // Icon colorcolor: theme.colorScheme.onPrimary,
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 24.0,
+                              ),
+                              child: Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary.withOpacity(
+                                    0.8,
+                                  ),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.local_taxi_rounded,
+                                  size: 48,
+                                  color: Colors.white, // Icon color
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'Uber Taxi',
-                            style: theme.textTheme.headlineMedium?.copyWith(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.primary,
+                              fontSize: 24,
+                              color: Colors.white,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -188,18 +196,18 @@ class LoginScreenState extends State<LoginScreen>
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
-                            color: theme.colorScheme.outline.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0.5),
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
-                            color: theme.colorScheme.primary,
+                            color: Colors.grey.withValues(alpha: 0.5),
                             width: 2,
                           ),
                         ),
                         filled: true,
-                        fillColor: theme.colorScheme.surface,
+                        fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16,
                         ),
@@ -245,18 +253,18 @@ class LoginScreenState extends State<LoginScreen>
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
-                            color: theme.colorScheme.outline.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0.5),
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
-                            color: theme.colorScheme.primary,
+                            color: Colors.grey.withValues(alpha: 0.5),
                             width: 2,
                           ),
                         ),
                         filled: true,
-                        fillColor: theme.colorScheme.surface,
+                        fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16,
                         ),
@@ -284,14 +292,17 @@ class LoginScreenState extends State<LoginScreen>
                           );
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: theme.colorScheme.primary,
+                          foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           minimumSize: Size.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                         child: const Text(
                           'Forgot Password?',
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -310,7 +321,7 @@ class LoginScreenState extends State<LoginScreen>
                         elevation: 2,
                         shadowColor: theme.colorScheme.shadow,
                         disabledBackgroundColor: theme.colorScheme.primary
-                            .withOpacity(0.6),
+                            .withValues(alpha: 0.6),
                       ),
                       child:
                           _isLoading
@@ -360,7 +371,10 @@ class LoginScreenState extends State<LoginScreen>
                             ),
                             child: const Text(
                               'Sign Up',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],

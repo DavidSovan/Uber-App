@@ -213,6 +213,7 @@ class _FeedbackScreenState extends State<FeedbackScreen>
                         child: ElevatedButton(
                           onPressed: _isSubmitting ? null : _submitRating,
                           style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF26A69A),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -233,6 +234,7 @@ class _FeedbackScreenState extends State<FeedbackScreen>
                                     'SUBMIT FEEDBACK',
                                     style: TextStyle(
                                       fontSize: 16,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

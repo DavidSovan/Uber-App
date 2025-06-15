@@ -124,7 +124,7 @@ class AddVehicleScreenState extends State<AddVehicleScreen> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 3,
             offset: const Offset(0, 1),
@@ -171,20 +171,13 @@ class AddVehicleScreenState extends State<AddVehicleScreen> {
             gradient: LinearGradient(
               colors: [
                 Theme.of(context).primaryColor,
-                Theme.of(context).primaryColor.withOpacity(0.8),
+                Theme.of(context).primaryColor.withValues(alpha: 0.8),
               ],
             ),
           ),
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [primaryColor.withOpacity(0.05), Colors.white],
-          ),
-        ),
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Form(
@@ -376,6 +369,10 @@ class AddVehicleScreenState extends State<AddVehicleScreen> {
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
+                        side: const BorderSide(
+                          color: Color(0xFF26A69A),
+                          width: 5,
+                        ),
                       ),
                       elevation: 2,
                     ),

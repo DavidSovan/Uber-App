@@ -190,6 +190,7 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
                     ElevatedButton(
                       onPressed: _isLoading ? null : _submitForm,
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF26A69A),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -209,7 +210,11 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
                               )
                               : const Text(
                                 'UPDATE VEHICLE',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                     ),
                   ],

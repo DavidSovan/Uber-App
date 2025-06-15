@@ -124,12 +124,24 @@ class _ViewBookingForDriverState extends State<ViewBookingForDriver> {
                     child: ElevatedButton(
                       onPressed: () => _acceptBooking(booking),
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF26A69A),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        side: const BorderSide(
+                          color: Color(0xFF26A69A),
+                          width: 5,
+                        ),
                       ),
-                      child: const Text('ACCEPT BOOKING'),
+                      child: const Text(
+                        'ACCEPT BOOKING',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ],
